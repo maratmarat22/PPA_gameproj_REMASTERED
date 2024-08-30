@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PPA_gameproj_REMASTERED.units.concrete.human
 {
-    internal class HumanInfantryman : Infantryman
+    class HumanInfantryman : Infantryman
     {
         public HumanInfantryman(int price, int health, int armor, int damage, int dodgeChance) : base(price, health, armor, damage, dodgeChance) { }
     }

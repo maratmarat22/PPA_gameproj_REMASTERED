@@ -9,7 +9,12 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
 {
     abstract class Archer : Unit, IRangeAttack
     {
-        public Archer(int price, int health, int armor, int damage, int dodgeChance) : base(price, health, armor, damage, dodgeChance) { }
+        public int MissChance { get; set; }
+
+        public Archer(int price, int health, int armor, int damage, int dodgeChance) : base(price, health, armor, damage, dodgeChance)
+        {
+            MissChance = 1;
+        }
 
         public abstract void RangeAttack(Unit unit);
     }

@@ -1,4 +1,5 @@
-﻿using PPA_gameproj_REMASTERED.factories;
+﻿using PPA_gameproj_REMASTERED.army;
+using PPA_gameproj_REMASTERED.factories;
 
 namespace PPA_gameproj_REMASTERED
 {
@@ -6,9 +7,11 @@ namespace PPA_gameproj_REMASTERED
     {
         static void Main(string[] args)
         {
-            var humanUnitFactory = new HumanUnitFactory();
-            var infantryman = humanUnitFactory.CreateInfantryman();
-            Console.WriteLine(infantryman.ToString());
+            var humanFactory = new HumanUnitFactory();
+            var armyCreator = new ArmyCreator(humanFactory);
+            Army humanArmy = armyCreator.CreateArmy("SSIAS");
+            armyCreator.UnitFactory = new SkeletonUnitFactory();
+            Army skeletonArmy = armyCreator.CreateArmy("IIIII");
         }
     }
 }

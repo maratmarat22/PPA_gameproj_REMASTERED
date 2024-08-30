@@ -3,7 +3,7 @@ using PPA_gameproj_REMASTERED.units.concrete.skeleton;
 
 namespace PPA_gameproj_REMASTERED.factories
 {
-    internal class SkeletonUnitFactory
+    internal class SkeletonUnitFactory : IUnitFactory
     {
         public Swordsman CreateSwordsman()
         {

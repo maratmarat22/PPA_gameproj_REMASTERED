@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
-    internal abstract class Infantryman : Unit
+    abstract class Infantryman : Unit
     {
         public Infantryman(int price, int health, int armor, int damage, int dodgeChance) : base(price, health, armor, damage, dodgeChance) { }
     }
