@@ -1,5 +1,4 @@
 ﻿using PPA_gameproj_REMASTERED.units.@abstract;
-using PPA_gameproj_REMASTERED.units.interfaces;
 
 namespace PPA_gameproj_REMASTERED.units.concrete.human
 {

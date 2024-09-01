@@ -1,14 +1,12 @@
-﻿using PPA_gameproj_REMASTERED.units.interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PPA_gameproj_REMASTERED.enums;
 
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
     abstract class Infantryman : Unit
     {
-        public Infantryman(int price, int health, int armor, int damage, int dodgeChance) : base(price, health, armor, damage, dodgeChance) { }
+        public Infantryman(int price, int health, int armor, int damage, int parryChance) : base(price, health, armor, damage, parryChance)
+        {
+            UnitAbilities = Abilities.Swap | Abilities.MeleeAttack;
+        }
     }
 }

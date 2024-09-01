@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PPA_gameproj_REMASTERED.army;
 
 namespace PPA_gameproj_REMASTERED.battlefields
 {
     interface IBattlefield
     {
-        
+        string ToString();
     }
 }

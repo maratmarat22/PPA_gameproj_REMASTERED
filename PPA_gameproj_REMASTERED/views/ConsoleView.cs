@@ -17,9 +17,11 @@ namespace PPA_gameproj_REMASTERED.views
         {
             _writer.WriteLine("PPA_gameproj_REMASTERED\n");
             _writer.WriteLine("1. Start new game");
-            _writer.WriteLine("2. Exit");
+            _writer.WriteLine("2. Load game");
+            _writer.WriteLine("3. Settings");
+            _writer.WriteLine("4. Exit");
 
-            string validOptions = "12";
+            string validOptions = "1234";
 
             string? option = _reader.ReadLine();
 
@@ -31,16 +33,20 @@ namespace PPA_gameproj_REMASTERED.views
 
             return byte.Parse(option);
         }
-
+        
         public string DisplayArmyCreationMenu(int budget)
         {
             _writer.WriteLine("Army Creation Menu\n");
-            _writer.WriteLine("1. Swordsman");
-            _writer.WriteLine("2. Infantryman");
-            _writer.WriteLine("3. Archer");
+            _writer.WriteLine("1. Infantryman");
+            _writer.WriteLine("2. Archer");
+            _writer.WriteLine("3. Swordsman");
+            _writer.WriteLine("4. Knight");
+            _writer.WriteLine("5. Wagon fort");
+            _writer.WriteLine("6. Healer");
+            _writer.WriteLine("7. Magician");
             _writer.WriteLine("0. Confirm & continue\n");
 
-            string validOptions = "1230";
+            string validOptions = "12345670";
 
             var stringBuilder = new StringBuilder();
 
@@ -62,19 +68,32 @@ namespace PPA_gameproj_REMASTERED.views
                 switch (option)
                 {
                     case "1":
-                        stringBuilder.Append("S");
-                        
+                        stringBuilder.Append("I");                        
                         // Цены на юнитов стоит перенести в отдельную структуру, которую передавать и в этот метод, и в фабричные методы
                         budget -= 10;
-                        break;
-                    
+                        break;                    
                     case "2":
-                        stringBuilder.Append("I");
+                        stringBuilder.Append("A");
                         budget -= 10;
                         break;
-
                     case "3":
-                        stringBuilder.Append("A");
+                        stringBuilder.Append("S");
+                        budget -= 10;
+                        break;
+                    case "4":
+                        stringBuilder.Append("K");
+                        budget -= 10;
+                        break;
+                    case "5":
+                        stringBuilder.Append("W");
+                        budget -= 10;
+                        break;
+                    case "6":
+                        stringBuilder.Append("H");
+                        budget -= 10;
+                        break;
+                    case "7":
+                        stringBuilder.Append("M");
                         budget -= 10;
                         break;
                 }
@@ -82,5 +101,7 @@ namespace PPA_gameproj_REMASTERED.views
 
             return stringBuilder.ToString();
         }
+
+        public void DisplayBattlefield(string battlefieldString) => _writer.WriteLine(battlefieldString);
     }
 }

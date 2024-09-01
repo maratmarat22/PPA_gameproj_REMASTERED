@@ -5,5 +5,7 @@
         byte DisplayMainMenu();
 
         string DisplayArmyCreationMenu(int budget);
+
+        void DisplayBattlefield(string battlefieldString);
     }
 }

@@ -1,9 +1,5 @@
 ﻿using PPA_gameproj_REMASTERED.units.interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PPA_gameproj_REMASTERED.enums;
 
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
@@ -11,9 +7,10 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
     {
         public int MissChance { get; set; }
 
-        public Archer(int price, int health, int armor, int damage, int dodgeChance) : base(price, health, armor, damage, dodgeChance)
+        public Archer(int price, int health, int armor, int damage, int parryChance) : base(price, health, armor, damage, parryChance)
         {
             MissChance = 1;
+            UnitAbilities = Abilities.Swap | Abilities.RangeAttack;
         }
 
         public abstract void RangeAttack(Unit unit);

@@ -18,7 +18,13 @@ namespace PPA_gameproj_REMASTERED
                     gameplay.Process();
                     break;
 
-                case 2:
+                case 2: // Load save
+                    break;
+
+                case 3: // Settings
+                    break;
+
+                case 4:
                     Environment.Exit(0);
                     break;
             }
