@@ -2,10 +2,8 @@
 
 namespace PPA_gameproj_REMASTERED.units.interfaces
 {
-    interface IRangeAttack
+    interface IAttackOne : IAttack
     {
-        public int MissChance { get; set; }
-
-        void RangeAttack(Unit unit);
+        void Attack(Unit unit);
     }
 }

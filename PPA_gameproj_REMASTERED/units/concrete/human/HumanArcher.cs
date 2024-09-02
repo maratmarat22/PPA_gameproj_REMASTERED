@@ -4,11 +4,6 @@ namespace PPA_gameproj_REMASTERED.units.concrete.human
 {
     class HumanArcher : Archer
     {
-        public HumanArcher(int price, int health, int armor, int damage, int dodgeChance) : base(price, health, armor, damage, dodgeChance) { }
-
-        public override void RangeAttack(Unit unit)
-        {
-            
-        }
+        public HumanArcher(int health, int armor, int damage, int coverage, int missChance) : base(health, armor, damage, coverage, missChance) { }
     }
 }

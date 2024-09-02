@@ -1,12 +1,21 @@
 ﻿using PPA_gameproj_REMASTERED.enums;
+using PPA_gameproj_REMASTERED.units.interfaces;
 
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
-    abstract class Swordsman : Unit
+    abstract class Swordsman : Unit, IAttackOne
     {
-        public Swordsman(int price, int health, int armor, int damage, int dodgeChance) : base(price, health, armor, damage, dodgeChance)
+        public int Damage { get; set; }
+        
+        public Swordsman(int health, int armor, int damage) : base(health, armor)
         {
-            UnitAbilities = Abilities.Swap | Abilities.MeleeAttack | Abilities.Defend;
+            Abilities = UnitAbilities.Swap | UnitAbilities.MeleeAttack | UnitAbilities.Defend;
+            Damage = damage;
+        }
+
+        public void Attack(Unit unit)
+        {
+        
         }
     }
 }

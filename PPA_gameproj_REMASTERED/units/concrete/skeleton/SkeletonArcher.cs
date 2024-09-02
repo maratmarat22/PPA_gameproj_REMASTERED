@@ -4,11 +4,6 @@ namespace PPA_gameproj_REMASTERED.units.concrete.skeleton
 {
     class SkeletonArcher : Archer
     {
-        public SkeletonArcher(int price, int health, int armor, int damage, int dodgeChance) : base(price, health, armor, damage, dodgeChance) { }
-
-        public override void RangeAttack(Unit unit)
-        {
-
-        }
+        public SkeletonArcher(int health, int armor, int damage, int coverage, int missChance) : base(health, armor, damage, coverage, missChance) { }
     }
 }

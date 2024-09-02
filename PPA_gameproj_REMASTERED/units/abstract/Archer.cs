@@ -3,16 +3,23 @@ using PPA_gameproj_REMASTERED.enums;
 
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
-    abstract class Archer : Unit, IRangeAttack
+    abstract class Archer : Unit, IRange, IAttackOne
     {
+        public int Damage { get; set; }
+        public int Coverage { get; set; }
         public int MissChance { get; set; }
 
-        public Archer(int price, int health, int armor, int damage, int parryChance) : base(price, health, armor, damage, parryChance)
+        public Archer(int health, int armor, int damage, int coverage, int missChance) : base(health, armor)
         {
-            MissChance = 1;
-            UnitAbilities = Abilities.Swap | Abilities.RangeAttack;
+            Abilities = UnitAbilities.Swap | UnitAbilities.RangeAttack;
+            Damage = damage;
+            Coverage = coverage;
+            MissChance = missChance;
         }
 
-        public abstract void RangeAttack(Unit unit);
+        public void Attack(Unit unit)
+        {
+            
+        }
     }
 }

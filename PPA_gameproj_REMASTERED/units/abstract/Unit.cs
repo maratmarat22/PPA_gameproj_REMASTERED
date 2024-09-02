@@ -4,35 +4,19 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
 {
     abstract class Unit
     {
-        public int Price { get; set; }
         public int Health { get; set; }
-        public int Armor { get; set; }
-        public int Damage { get; set; }
-        public int ParryChance { get; set; }
-        public Abilities UnitAbilities { get; set; }
+        public int Armor { get; set; }        
+        public UnitAbilities Abilities { get; set; }
 
-        public Unit(int price, int health, int armor, int damage, int parryChance)
+        public Unit(int health, int armor)
         {
-            Price = price;
             Health = health;
             Armor = armor;
-            Damage = damage;
-            ParryChance = parryChance;
         }
 
-        public IEnumerable<string> GetAbilities()
+        public string[] GetAbilities()
         {
-            int index = 1;
-            foreach (Abilities ability in Enum.GetValues(typeof(Abilities)))
-            {
-                if (ability == Abilities.None)
-                {
-                    yield break;
-                }
-                
-                yield return $"{index}. {ability}";
-                ++index;
-            }
+            return Abilities.ToString().Split(", ");
         }
 
         public override string ToString()
@@ -46,7 +30,7 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
                     unitShortName += ch;
             }
 
-            return unitShortName + $"({Health})";
+            return unitShortName + $"({Health}/{Armor})";
         }
     }
 }

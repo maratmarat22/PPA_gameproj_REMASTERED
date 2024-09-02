@@ -24,18 +24,27 @@ namespace PPA_gameproj_REMASTERED.army
             {
                 switch (ch)
                 {
-                    case 'S':
-                        units.Add(UnitFactory.CreateSwordsman());
-                        break;
-
                     case 'I':
                         units.Add(UnitFactory.CreateInfantryman());
                         break;
-
                     case 'A':
                         units.Add(UnitFactory.CreateArcher());
                         break;
-
+                    case 'S':
+                        units.Add(UnitFactory.CreateSwordsman());
+                        break;
+                    case 'K':
+                        units.Add(UnitFactory.CreateKnight());
+                        break;
+                    case 'W':
+                        units.Add(UnitFactory.CreateWagonFort());
+                        break;
+                    case 'H':
+                        units.Add(UnitFactory.CreateHealer());
+                        break;
+                    case 'M':
+                        units.Add(UnitFactory.CreateMagician());
+                        break;
                     default:
                         // Можно добавить обработку исключения, хотя все неподходящие опции не попадут в этот метод
                         break;

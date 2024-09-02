@@ -1,0 +1,8 @@
+﻿NAME;PRICE;HEALTH;ARMOR;DAMAGE;COVERAGE;MISSCHANCE
+Infantryman;100;3;0;2;0;0
+Archer;150;2;0;1;4;10
+Swordsman;200;4;2;3;0;0
+Knight;350;3;1;2;0;0
+WagonFort;300;7;0;0;0;0
+Healer;400;2;0;0;0;0
+Magician;500;2;2;3;5;15

@@ -1,7 +1,7 @@
 ﻿namespace PPA_gameproj_REMASTERED.units.interfaces
 {
-    interface IMeleeAttack
+    interface IAttack
     {
-        void MeleeAttack();
+        int Damage { get; set; }
     }
 }

@@ -1,12 +1,18 @@
 ﻿using PPA_gameproj_REMASTERED.enums;
+using PPA_gameproj_REMASTERED.units.interfaces;
 
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
-    abstract class Healer : Unit
+    abstract class Healer : Unit, IHeal
     {
-        public Healer(int price, int health, int armor, int damage, int parryChance) : base(price, health, armor, damage, parryChance)
+        public Healer(int health, int armor) : base(health, armor)
         {
-            UnitAbilities = Abilities.Swap | Abilities.Defend | Abilities.Heal;
+            Abilities = UnitAbilities.Swap | UnitAbilities.Defend | UnitAbilities.Heal;
+        }
+
+        public void Heal(List<Unit> units)
+        {
+            
         }
     }
 }

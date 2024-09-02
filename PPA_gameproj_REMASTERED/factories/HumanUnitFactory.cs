@@ -5,20 +5,47 @@ namespace PPA_gameproj_REMASTERED.factories
 {
     class HumanUnitFactory : IUnitFactory
     {
-        public Swordsman CreateSwordsman()
-        {
-            // Значения тестовые, только для возможности скомпилировать код
-            return new HumanSwordsman(10, 10, 10, 10, 10);
-        }
+        public Dictionary<string, (int price, int health, int armor, int damage, int coverage, int missChance)> Parameters { get; set; }
 
+        public HumanUnitFactory(Dictionary<string, (int, int, int, int, int, int)> parameters)
+        {
+            Parameters = parameters;
+        }
+        
         public Infantryman CreateInfantryman()
         {
-            return new HumanInfantryman(10, 10, 10, 10, 10);
+            var parameters = Parameters["Infantryman"];
+            return new HumanInfantryman(parameters.health, parameters.armor, parameters.damage);
         }
 
         public Archer CreateArcher()
         {
-            return new HumanArcher(10, 10, 10, 10, 10);
+            var parameters = Parameters["Archer"];
+            return new HumanArcher(parameters.health, parameters.armor, parameters.damage, parameters.coverage, parameters.missChance);
+        }
+
+        public Swordsman CreateSwordsman()
+        {
+            var parameters = Parameters["Swordsman"];
+            return new HumanSwordsman(parameters.health, parameters.armor, parameters.damage);
+        }
+
+        public Knight CreateKnight()
+        {
+            var parameters = Parameters["Knight"];
+            return new HumanKnight(parameters.health, parameters.armor, parameters.damage);
+        }
+
+        public Healer CreateHealer()
+        {
+            var parameters = Parameters["Healer"];
+            return new HumanHealer(parameters.health, parameters.armor);
+        }
+
+        public Magician CreateMagician()
+        {
+            var parameters = Parameters["Magician"];
+            return new HumanMagician(parameters.health, parameters.armor, parameters.damage, parameters.coverage, parameters.missChance);
         }
     }
 }
