@@ -2,7 +2,7 @@
 
 namespace PPA_gameproj_REMASTERED.views
 {
-    class ConsoleView : IView
+    class ConsoleView : IView, IDisposable
     {
         private readonly StreamWriter _writer;
         private readonly StreamReader _reader;
@@ -15,6 +15,7 @@ namespace PPA_gameproj_REMASTERED.views
         
         public byte DisplayMainMenu()
         {
+            Console.Clear();
             _writer.WriteLine("PPA_gameproj_REMASTERED\n");
             _writer.WriteLine("1. Start new game");
             _writer.WriteLine("2. Load game");
@@ -36,6 +37,7 @@ namespace PPA_gameproj_REMASTERED.views
         
         public string DisplayArmyCreationMenu(int budget)
         {
+            Console.Clear();
             _writer.WriteLine("Army Creation Menu\n");
             _writer.WriteLine("1. Infantryman");
             _writer.WriteLine("2. Archer");
@@ -102,6 +104,16 @@ namespace PPA_gameproj_REMASTERED.views
             return stringBuilder.ToString();
         }
 
-        public void DisplayBattlefield(string battlefieldString) => _writer.WriteLine(battlefieldString);
+        public void DisplayBattlefield(string battlefieldString)
+        {
+            Console.Clear();
+            _writer.WriteLine(battlefieldString);
+        }
+
+        public void Dispose()
+        {
+            _writer.Dispose();
+            _reader.Dispose();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using PPA_gameproj_REMASTERED.army;
 using PPA_gameproj_REMASTERED.battlefields;
+using PPA_gameproj_REMASTERED.commands;
 using PPA_gameproj_REMASTERED.config;
 using PPA_gameproj_REMASTERED.factories;
 using PPA_gameproj_REMASTERED.views;
@@ -34,6 +35,7 @@ namespace PPA_gameproj_REMASTERED
         public void Process()
         {
             View.DisplayBattlefield(_battlefield.ToString());
+            
         }
     }
 }

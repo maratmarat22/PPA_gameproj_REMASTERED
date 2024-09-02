@@ -13,9 +13,31 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
             Damage = damage;
         }
 
-        public void Attack(List<Unit> units)
+        public bool Attack(List<Unit> units)
         {
-        
+            bool needCleaning = false;
+            
+            foreach (var unit in units)
+            {
+                if (unit.Armor > 0)
+                {
+                    --unit.Armor;
+                }
+                else
+                {
+                    if (unit.Health - Damage > 0)
+                    {
+                        unit.Health -= Damage;
+                    }
+                    else
+                    {
+                        unit.Health = 0;
+                        needCleaning = true;
+                    }
+                }
+            }
+
+            return needCleaning;
         }
     }
 }

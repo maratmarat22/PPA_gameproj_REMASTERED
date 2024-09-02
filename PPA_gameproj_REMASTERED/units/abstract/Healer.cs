@@ -10,9 +10,19 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
             Abilities = UnitAbilities.Swap | UnitAbilities.Defend | UnitAbilities.Heal;
         }
 
-        public void Heal(List<Unit> units)
+        public bool Heal(List<Unit> units)
         {
-            
+            bool needCleaning = false;
+
+            foreach (var unit in units)
+            {
+                if (unit.Health < unit.MaxHealth)
+                {
+                    ++unit.Health;
+                }
+            }
+
+            return needCleaning;
         }
     }
 }

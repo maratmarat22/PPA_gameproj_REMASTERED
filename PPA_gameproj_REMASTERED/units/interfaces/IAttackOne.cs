@@ -4,6 +4,6 @@ namespace PPA_gameproj_REMASTERED.units.interfaces
 {
     interface IAttackOne : IAttack
     {
-        void Attack(Unit unit);
+        bool Attack(Unit unit);
     }
 }

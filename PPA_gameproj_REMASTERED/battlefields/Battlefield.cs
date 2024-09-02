@@ -9,6 +9,11 @@
             CurrentBattlefield = currentBattlefield;
         }
 
+        public void Clean()
+        {
+            CurrentBattlefield.Clean();
+        }
+
         public override string ToString()
         {
             return CurrentBattlefield.ToString();

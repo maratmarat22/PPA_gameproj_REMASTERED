@@ -17,9 +17,32 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
             MissChance = missChance;
         }
 
-        public void Attack(List<Unit> units)
+        public bool Attack(List<Unit> units)
         {
-        
+            bool needCleaning = false;
+            
+            // Добавить шанс промаха лучнику и магу
+            foreach (var unit in units)
+            {
+                if (unit.Armor > 0)
+                {
+                    --unit.Armor;
+                }
+                else
+                {
+                    if (unit.Health - Damage > 0)
+                    {
+                        unit.Health -= Damage;
+                    }
+                    else
+                    {
+                        unit.Health = 0;
+                        needCleaning = true;
+                    }
+                }
+            }
+
+            return needCleaning;
         }
     }
 }

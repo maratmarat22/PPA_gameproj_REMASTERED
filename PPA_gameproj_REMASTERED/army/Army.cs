@@ -11,5 +11,16 @@ namespace PPA_gameproj_REMASTERED.army
         {
             Units = units;
         }
+
+        public bool SwapUnits(int index1, int index2)
+        {
+            bool needCleaning = false;
+            
+            var buff = Units[index2];
+            Units[index2] = Units[index1];
+            Units[index1] = buff;
+
+            return needCleaning;
+        }
     }
 }

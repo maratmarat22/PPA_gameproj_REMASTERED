@@ -14,6 +14,18 @@ namespace PPA_gameproj_REMASTERED.battlefields
             SkeletonArmy = skeletonArmy;
         }
 
+        public void Clean()
+        {
+            foreach (var unit in HumanArmy.Units)
+            {
+                if (unit.Health == 0)
+                {
+                    // Возможно, стоит поменять на RemoveAt()
+                    HumanArmy.Units.Remove(unit);
+                }
+            }
+        }
+
         public override string ToString()
         {
             var stringBuilder = new StringBuilder();
