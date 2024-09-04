@@ -9,7 +9,7 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
         
         public Infantryman(int health, int armor, int damage) : base(health, armor)
         {
-            Abilities = UnitAbilities.Swap | UnitAbilities.MeleeAttack;
+            Abilities = UnitAbilities.Swap | UnitAbilities.AttackOne;
             Damage = damage;
         }
 

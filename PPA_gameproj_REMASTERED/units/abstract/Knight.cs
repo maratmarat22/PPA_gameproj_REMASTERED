@@ -9,7 +9,7 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
         
         public Knight(int health, int armor, int damage) : base(health, armor)
         {
-            Abilities = UnitAbilities.Swap | UnitAbilities.MeleeAttack | UnitAbilities.Defend | UnitAbilities.RowAttack;
+            Abilities = UnitAbilities.Swap | UnitAbilities.AttackMany;
             Damage = damage;
         }
 

@@ -4,11 +4,8 @@
     public enum UnitAbilities
     {
         Swap = 1,
-        MeleeAttack = 2,
-        RangeAttack = 4,
-        Defend = 8,
-        RowAttack = 16,
-        Heal = 32,
-        ColAttack = 64
+        AttackOne = 2,
+        AttackMany = 4,
+        Heal = 8
     }
 }

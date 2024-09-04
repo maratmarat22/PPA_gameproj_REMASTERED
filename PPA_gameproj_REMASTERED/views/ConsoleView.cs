@@ -104,10 +104,70 @@ namespace PPA_gameproj_REMASTERED.views
             return stringBuilder.ToString();
         }
 
-        public void DisplayBattlefield(string battlefieldString)
+        private void DisplayBattlefield(string battlefieldString)
+        {
+            _writer.WriteLine(battlefieldString);
+        }
+
+        private (bool isValid, byte row, byte col) ValidateCoordinates(string option)
+        {
+            bool correctFormat = !string.IsNullOrWhiteSpace(option) &&
+                option.Contains('/') &&
+                option.Split('/').Length == 2;
+
+            if (!correctFormat)
+            {
+                return (false, 0, 0);
+            }
+
+            var coordinates = option.Split('/');
+
+            bool convertible = byte.TryParse(coordinates[0], out byte row) & byte.TryParse(coordinates[1], out byte col);
+
+            return (convertible, row, col);
+        }
+
+        public (byte row, byte col) DisplayTurn(int turn, string battlefieldString)
         {
             Console.Clear();
-            _writer.WriteLine(battlefieldString);
+            _writer.WriteLine($"Turn: {turn}");
+            DisplayBattlefield(battlefieldString);
+            _writer.WriteLine("Enter unit's coordinates, format: row/col");
+
+            var option = _reader.ReadLine();
+            var validationResults = ValidateCoordinates(option!);
+
+            while (!validationResults.isValid)
+            {
+                _writer.WriteLine("Invalid option");
+                option = _reader.ReadLine();
+                validationResults = ValidateCoordinates(option!);
+            }
+
+            return (validationResults.row, validationResults.col);
+        }
+
+        public byte DisplayAbilities(string[] abilities)
+        {
+            byte index = 1;
+            foreach (var ability in abilities)
+            {
+                _writer.WriteLine($"{index}: {ability}");
+                ++index;
+            }
+
+            // Добавить нормальную обработку
+            var option = _reader.ReadLine();
+            byte byteOption = byte.Parse(option);
+
+            while (string.IsNullOrWhiteSpace(option) || byteOption > index)
+            {
+                _writer.WriteLine("Invalid option");
+                option = _reader.ReadLine();
+                byteOption = byte.Parse(option);
+            }
+
+            return byteOption;
         }
 
         public void Dispose()

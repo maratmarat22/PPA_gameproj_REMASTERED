@@ -6,6 +6,8 @@
 
         string DisplayArmyCreationMenu(int budget);
 
-        void DisplayBattlefield(string battlefieldString);
+        (byte row, byte col) DisplayTurn(int turn, string battlefieldString);
+
+        byte DisplayAbilities(string[] abilities);
     }
 }

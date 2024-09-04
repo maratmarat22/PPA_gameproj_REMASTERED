@@ -11,7 +11,7 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
         
         public Magician(int health, int armor, int damage, int coverage, int missChance) : base(health, armor)
         {
-            Abilities = UnitAbilities.Swap | UnitAbilities.RowAttack | UnitAbilities.ColAttack;
+            Abilities = UnitAbilities.Swap | UnitAbilities.AttackMany;
             Damage = damage;
             Coverage = coverage;
             MissChance = missChance;

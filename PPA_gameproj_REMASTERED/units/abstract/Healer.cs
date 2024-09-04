@@ -7,7 +7,7 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
     {
         public Healer(int health, int armor) : base(health, armor)
         {
-            Abilities = UnitAbilities.Swap | UnitAbilities.Defend | UnitAbilities.Heal;
+            Abilities = UnitAbilities.Swap | UnitAbilities.Heal;
         }
 
         public bool Heal(List<Unit> units)
@@ -16,7 +16,7 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
 
             foreach (var unit in units)
             {
-                if (unit.Health < unit.MaxHealth)
+                if (unit.Health < 0 /*unit.MaxHealth*/)
                 {
                     ++unit.Health;
                 }

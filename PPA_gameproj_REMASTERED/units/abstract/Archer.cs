@@ -11,7 +11,7 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
 
         public Archer(int health, int armor, int damage, int coverage, int missChance) : base(health, armor)
         {
-            Abilities = UnitAbilities.Swap | UnitAbilities.RangeAttack;
+            Abilities = UnitAbilities.Swap | UnitAbilities.AttackOne;
             Damage = damage;
             Coverage = coverage;
             MissChance = missChance;

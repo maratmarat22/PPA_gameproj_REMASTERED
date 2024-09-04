@@ -9,6 +9,16 @@
             CurrentBattlefield = currentBattlefield;
         }
 
+        public OneLineBattlefield FindBattlefield(int index)
+        {
+            if (CurrentBattlefield is ManyLineBattlefield manyLineBattlefield)
+            {
+                return manyLineBattlefield.Battlefields[index];
+            }
+
+            return (OneLineBattlefield)CurrentBattlefield;
+        }
+
         public void Clean()
         {
             CurrentBattlefield.Clean();
