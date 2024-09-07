@@ -3,33 +3,35 @@ using PPA_gameproj_REMASTERED.units.interfaces;
 
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
-    abstract class Infantryman : Unit, IAttackOne
+    abstract class Infantryman : Unit, IAttack
     {
         public int Damage { get; set; }
         
         public Infantryman(int health, int armor, int damage) : base(health, armor)
         {
-            Abilities = UnitAbilities.Swap | UnitAbilities.AttackOne;
+            Abilities = UnitAbilities.Swap | UnitAbilities.Attack;
             Damage = damage;
         }
 
-        public bool Attack(Unit unit)
+        public bool Attack(params Unit[] targets)
         {
             bool needCleaning = false;
             
-            if (unit.Armor > 0)
+            Unit target = targets[0];
+
+            if (target.Armor > 0)
             {
-                --unit.Armor;
+                --target.Armor;
             }
             else
             {
-                if (unit.Health - Damage > 0)
+                if (target.Health - Damage > 0)
                 {
-                    unit.Health -= Damage;
+                    target.Health -= Damage;
                 }
                 else
                 {
-                    unit.Health = 0;
+                    target.Health = 0;
                     needCleaning = true;
                 }
             }

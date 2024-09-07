@@ -3,12 +3,12 @@ using PPA_gameproj_REMASTERED.units.interfaces;
 
 namespace PPA_gameproj_REMASTERED.commands
 {
-    class AttackManyCommand : ICommand
+    class AttackCommand : ICommand
     {
-        private readonly IAttackMany _attacker;
-        private readonly List<Unit> _targets;
+        private readonly IAttack _attacker;
+        private readonly Unit[] _targets;
 
-        public AttackManyCommand(IAttackMany attacker, List<Unit> targets)
+        public AttackCommand(IAttack attacker, Unit[] targets)
         {
             _attacker = attacker;
             _targets = targets;

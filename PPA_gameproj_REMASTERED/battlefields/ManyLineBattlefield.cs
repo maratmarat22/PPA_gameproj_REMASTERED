@@ -11,6 +11,11 @@ namespace PPA_gameproj_REMASTERED.battlefields
             Battlefields = battlefields;
         }
 
+        public OneLineBattlefield GetAt(int index)
+        {
+            return Battlefields[index];
+        }
+
         // Если в методе поля боя 1x1 еще не так критично пробежаться по всему списку,
         // то здесь стоит изменить реализацию на более оптимизированную
         public void Clean()

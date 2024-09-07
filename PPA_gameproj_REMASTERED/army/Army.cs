@@ -15,10 +15,13 @@ namespace PPA_gameproj_REMASTERED.army
         public bool SwapUnits(int index1, int index2)
         {
             bool needCleaning = false;
-            
-            var buff = Units[index2];
-            Units[index2] = Units[index1];
-            Units[index1] = buff;
+
+            if (index2 > 0 && index2 < Units.Count)
+            {
+                var buff = Units[index2];
+                Units[index2] = Units[index1];
+                Units[index1] = buff;
+            }
 
             return needCleaning;
         }

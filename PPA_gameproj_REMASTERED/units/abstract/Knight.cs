@@ -3,35 +3,35 @@ using PPA_gameproj_REMASTERED.units.interfaces;
 
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
-    abstract class Knight : Unit, IAttackMany
+    abstract class Knight : Unit, IAttack
     {
         public int Damage { get; set; }
         
         public Knight(int health, int armor, int damage) : base(health, armor)
         {
-            Abilities = UnitAbilities.Swap | UnitAbilities.AttackMany;
+            Abilities = UnitAbilities.Swap | UnitAbilities.Attack;
             Damage = damage;
         }
 
-        public bool Attack(List<Unit> units)
+        public bool Attack(params Unit[] targets)
         {
             bool needCleaning = false;
             
-            foreach (var unit in units)
+            foreach (var target in targets)
             {
-                if (unit.Armor > 0)
+                if (target.Armor > 0)
                 {
-                    --unit.Armor;
+                    --target.Armor;
                 }
                 else
                 {
-                    if (unit.Health - Damage > 0)
+                    if (target.Health - Damage > 0)
                     {
-                        unit.Health -= Damage;
+                        target.Health -= Damage;
                     }
                     else
                     {
-                        unit.Health = 0;
+                        target.Health = 0;
                         needCleaning = true;
                     }
                 }

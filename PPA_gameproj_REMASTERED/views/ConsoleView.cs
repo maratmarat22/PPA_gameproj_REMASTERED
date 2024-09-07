@@ -13,7 +13,7 @@ namespace PPA_gameproj_REMASTERED.views
             _reader = new StreamReader(Console.OpenStandardInput());
         }
         
-        public byte DisplayMainMenu()
+        public char DisplayMainMenu()
         {
             Console.Clear();
             _writer.WriteLine("PPA_gameproj_REMASTERED\n");
@@ -22,8 +22,13 @@ namespace PPA_gameproj_REMASTERED.views
             _writer.WriteLine("3. Settings");
             _writer.WriteLine("4. Exit");
 
-            string validOptions = "1234";
+            var validOptions = "1234";
 
+            return GetCharOption(validOptions);
+        }
+
+        private char GetCharOption(string validOptions)
+        {
             string? option = _reader.ReadLine();
 
             while (string.IsNullOrWhiteSpace(option) || option.Length != 1 || !validOptions.Contains(option))
@@ -32,23 +37,23 @@ namespace PPA_gameproj_REMASTERED.views
                 option = _reader.ReadLine();
             }
 
-            return byte.Parse(option);
+            return char.Parse(option);
         }
         
-        public string DisplayArmyCreationMenu(int budget)
+        public string DisplayArmyCreationMenu(List<int> prices, int budget)
         {
             Console.Clear();
             _writer.WriteLine("Army Creation Menu\n");
-            _writer.WriteLine("1. Infantryman");
-            _writer.WriteLine("2. Archer");
-            _writer.WriteLine("3. Swordsman");
-            _writer.WriteLine("4. Knight");
-            _writer.WriteLine("5. Wagon fort");
-            _writer.WriteLine("6. Healer");
-            _writer.WriteLine("7. Magician");
+            _writer.WriteLine($"1. Infantryman - {prices[0]}");
+            _writer.WriteLine($"2. Archer - {prices[1]}");
+            _writer.WriteLine($"3. Swordsman - {prices[2]}");
+            _writer.WriteLine($"4. Knight - {prices[3]}");
+            _writer.WriteLine($"5. Wagon fort - {prices[4]}");
+            _writer.WriteLine($"6. Healer - {prices[5]}");
+            _writer.WriteLine($"7. Magician - {prices[6]}");
             _writer.WriteLine("0. Confirm & continue\n");
 
-            string validOptions = "12345670";
+            string validOptions = "01234567";
 
             var stringBuilder = new StringBuilder();
 
@@ -56,48 +61,52 @@ namespace PPA_gameproj_REMASTERED.views
             {
                 _writer.WriteLine($"Gold: {budget}");
 
-                string? option = _reader.ReadLine();
+                char option = GetCharOption(validOptions);
 
-                if (option == "0")
-                    break;
-
-                while (string.IsNullOrWhiteSpace(option) || option.Length != 1 || !validOptions.Contains(option))
+                if (option == '0')
                 {
-                    _writer.WriteLine("Invalid option");
-                    option = _reader.ReadLine();
+                    if (stringBuilder.Length > 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        _writer.WriteLine("You should hire at least 1 unit!");
+                    }
                 }
-
-                switch (option)
+                else
                 {
-                    case "1":
-                        stringBuilder.Append("I");                        
-                        // Цены на юнитов стоит перенести в отдельную структуру, которую передавать и в этот метод, и в фабричные методы
-                        budget -= 10;
-                        break;                    
-                    case "2":
-                        stringBuilder.Append("A");
-                        budget -= 10;
-                        break;
-                    case "3":
-                        stringBuilder.Append("S");
-                        budget -= 10;
-                        break;
-                    case "4":
-                        stringBuilder.Append("K");
-                        budget -= 10;
-                        break;
-                    case "5":
-                        stringBuilder.Append("W");
-                        budget -= 10;
-                        break;
-                    case "6":
-                        stringBuilder.Append("H");
-                        budget -= 10;
-                        break;
-                    case "7":
-                        stringBuilder.Append("M");
-                        budget -= 10;
-                        break;
+                    switch (option)
+                    {
+                        case '1':
+                            stringBuilder.Append('I');
+                            budget -= prices[0];
+                            break;
+                        case '2':
+                            stringBuilder.Append('A');
+                            budget -= prices[1];
+                            break;
+                        case '3':
+                            stringBuilder.Append('S');
+                            budget -= prices[3];
+                            break;
+                        case '4':
+                            stringBuilder.Append('K');
+                            budget -= prices[4];
+                            break;
+                        case '5':
+                            stringBuilder.Append('W');
+                            budget -= prices[5];
+                            break;
+                        case '6':
+                            stringBuilder.Append('H');
+                            budget -= prices[6];
+                            break;
+                        case '7':
+                            stringBuilder.Append('M');
+                            budget -= prices[7];
+                            break;
+                    }
                 }
             }
 
@@ -109,7 +118,7 @@ namespace PPA_gameproj_REMASTERED.views
             _writer.WriteLine(battlefieldString);
         }
 
-        private (bool isValid, byte row, byte col) ValidateCoordinates(string option)
+        private (bool isValid, int row, int col) ValidateCoordinates(string? option)
         {
             bool correctFormat = !string.IsNullOrWhiteSpace(option) &&
                 option.Contains('/') &&
@@ -120,14 +129,15 @@ namespace PPA_gameproj_REMASTERED.views
                 return (false, 0, 0);
             }
 
-            var coordinates = option.Split('/');
+            var coordinates = option!.Split('/');
 
-            bool convertible = byte.TryParse(coordinates[0], out byte row) & byte.TryParse(coordinates[1], out byte col);
+            bool convertible = int.TryParse(coordinates[0], out int row) & int.TryParse(coordinates[1], out int col);
+            bool notZero = row > 0 && col > 0;
 
-            return (convertible, row, col);
+            return (convertible && notZero, row, col);
         }
 
-        public (byte row, byte col) DisplayTurn(int turn, string battlefieldString)
+        public (int row, int col) DisplayTurn(int turn, string battlefieldString)
         {
             Console.Clear();
             _writer.WriteLine($"Turn: {turn}");
@@ -135,39 +145,58 @@ namespace PPA_gameproj_REMASTERED.views
             _writer.WriteLine("Enter unit's coordinates, format: row/col");
 
             var option = _reader.ReadLine();
-            var validationResults = ValidateCoordinates(option!);
+            var validationResults = ValidateCoordinates(option);
 
             while (!validationResults.isValid)
             {
                 _writer.WriteLine("Invalid option");
                 option = _reader.ReadLine();
-                validationResults = ValidateCoordinates(option!);
+                validationResults = ValidateCoordinates(option);
             }
 
-            return (validationResults.row, validationResults.col);
+            return (validationResults.row - 1, validationResults.col - 1);
         }
 
-        public byte DisplayAbilities(string[] abilities)
+        public char DisplayAbilities(string[] abilities)
         {
-            byte index = 1;
+            int index = 1;
             foreach (var ability in abilities)
             {
                 _writer.WriteLine($"{index}: {ability}");
                 ++index;
             }
 
-            // Добавить нормальную обработку
             var option = _reader.ReadLine();
-            byte byteOption = byte.Parse(option);
+            int intOption;
 
-            while (string.IsNullOrWhiteSpace(option) || byteOption > index)
+            while (!int.TryParse(option, out intOption) || intOption <= 0 || intOption >= index)
             {
                 _writer.WriteLine("Invalid option");
                 option = _reader.ReadLine();
-                byteOption = byte.Parse(option);
             }
 
-            return byteOption;
+            --intOption;
+
+            return abilities[intOption][0];
+        }
+
+        public int DisplaySwapTargetSelection()
+        {
+            _writer.WriteLine("With whom would you want this unit to swap: left or right unit? l/r");
+
+            char option = GetCharOption("lr");
+
+            if (option == 'l')
+            {
+                return -1;
+            }
+
+            return 1;
+        }
+
+        public void DisplayUnit(string unitString)
+        {
+            _writer.WriteLine(unitString);
         }
 
         public void Dispose()

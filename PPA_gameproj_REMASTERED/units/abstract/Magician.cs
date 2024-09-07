@@ -3,41 +3,47 @@ using PPA_gameproj_REMASTERED.units.interfaces;
 
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
-    abstract class Magician : Unit, IRange, IAttackMany
+    abstract class Magician : Unit, IRange, IAttack
     {
         public int Damage { get; set; }
+
         public int Coverage { get; set; }
+
         public int MissChance { get; set; }
         
         public Magician(int health, int armor, int damage, int coverage, int missChance) : base(health, armor)
         {
-            Abilities = UnitAbilities.Swap | UnitAbilities.AttackMany;
+            Abilities = UnitAbilities.Swap | UnitAbilities.Attack;
             Damage = damage;
             Coverage = coverage;
             MissChance = missChance;
         }
 
-        public bool Attack(List<Unit> units)
+        public bool Attack(params Unit[] targets)
         {
             bool needCleaning = false;
-            
-            // Добавить шанс промаха лучнику и магу
-            foreach (var unit in units)
+
+            var random = RandomSingleton.GetInstance();
+
+            if (random.Next(100) > MissChance)
             {
-                if (unit.Armor > 0)
+                foreach (var target in targets)
                 {
-                    --unit.Armor;
-                }
-                else
-                {
-                    if (unit.Health - Damage > 0)
+                    if (target.Armor > 0)
                     {
-                        unit.Health -= Damage;
+                        --target.Armor;
                     }
                     else
                     {
-                        unit.Health = 0;
-                        needCleaning = true;
+                        if (target.Health - Damage > 0)
+                        {
+                            target.Health -= Damage;
+                        }
+                        else
+                        {
+                            target.Health = 0;
+                            needCleaning = true;
+                        }
                     }
                 }
             }

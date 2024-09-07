@@ -4,7 +4,7 @@
     {
         public readonly List<ICommand> commands;
 
-        CommandManager()
+        public CommandManager()
         {
             commands = new List<ICommand>();
         }
@@ -14,9 +14,9 @@
             commands.Add(command);
         }
 
-        public void ExecuteCommand()
+        public bool ExecuteCommand()
         {
-            commands.Last().Execute();
+            return commands.Last().Execute();
         }
 
         public void RemoveCommand()

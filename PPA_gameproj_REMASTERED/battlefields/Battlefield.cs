@@ -9,14 +9,9 @@
             CurrentBattlefield = currentBattlefield;
         }
 
-        public OneLineBattlefield FindBattlefield(int index)
+        public OneLineBattlefield GetAt(int index)
         {
-            if (CurrentBattlefield is ManyLineBattlefield manyLineBattlefield)
-            {
-                return manyLineBattlefield.Battlefields[index];
-            }
-
-            return (OneLineBattlefield)CurrentBattlefield;
+            return CurrentBattlefield.GetAt(index);
         }
 
         public void Clean()

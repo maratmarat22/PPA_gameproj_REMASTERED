@@ -9,7 +9,7 @@
             ConfigFilePath = configFilePath;
         }
 
-        public Dictionary<string, (int, int, int, int, int, int)> GetParameters()
+        public Dictionary<string, (int price, int health, int armor, int damage, int coverage, int missChance)> GetParameters()
         {
             var parameters = new Dictionary<string, (int, int, int, int, int, int)>();
 
@@ -25,14 +25,14 @@
 
                     var key = parts[0];
                     var stringValues = parts[1..];
-                    var IntValues = new int[stringValues.Length];
+                    var intValues = new int[stringValues.Length];
 
                     for (int i = 0; i < stringValues.Length; ++i)
                     {
-                        IntValues[i] = int.Parse(stringValues[i]);
+                        intValues[i] = int.Parse(stringValues[i]);
                     }
 
-                    var value = (IntValues[0], IntValues[1], IntValues[2], IntValues[3], IntValues[4], IntValues[5]);
+                    var value = (intValues[0], intValues[1], intValues[2], intValues[3], intValues[4], intValues[5]);
 
                     parameters.Add(key, value);
                 }

@@ -10,15 +10,15 @@ namespace PPA_gameproj_REMASTERED.units.@abstract
             Abilities = UnitAbilities.Swap | UnitAbilities.Heal;
         }
 
-        public bool Heal(List<Unit> units)
+        public bool Heal(Unit[] targets)
         {
             bool needCleaning = false;
 
-            foreach (var unit in units)
+            foreach (var target in targets)
             {
-                if (unit.Health < 0 /*unit.MaxHealth*/)
+                if (target.Health < target.maxHealth)
                 {
-                    ++unit.Health;
+                    ++target.Health;
                 }
             }
 

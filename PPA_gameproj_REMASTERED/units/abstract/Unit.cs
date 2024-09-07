@@ -3,14 +3,19 @@
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
     abstract class Unit
-    {
+    {   
         public int Health { get; set; }
+
+        public readonly int maxHealth;
+
         public int Armor { get; set; }        
+
         public UnitAbilities Abilities { get; set; }
 
         public Unit(int health, int armor)
         {
             Health = health;
+            maxHealth = health;
             Armor = armor;
         }
 

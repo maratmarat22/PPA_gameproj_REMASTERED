@@ -3,35 +3,42 @@ using PPA_gameproj_REMASTERED.enums;
 
 namespace PPA_gameproj_REMASTERED.units.@abstract
 {
-    abstract class Archer : Unit, IRange, IAttackOne
+    abstract class Archer : Unit, IRange, IAttack
     {
         public int Damage { get; set; }
+
         public int Coverage { get; set; }
+
         public int MissChance { get; set; }
 
         public Archer(int health, int armor, int damage, int coverage, int missChance) : base(health, armor)
         {
-            Abilities = UnitAbilities.Swap | UnitAbilities.AttackOne;
+            Abilities = UnitAbilities.Swap | UnitAbilities.Attack;
             Damage = damage;
             Coverage = coverage;
             MissChance = missChance;
         }
 
-        public bool Attack(Unit unit)
+        public bool Attack(params Unit[] targets)
         {
             bool needCleaning = false;
             
-            // Добавить шанс промаха лучнику и магу
-            if (unit.Armor == 0)
+            Unit target = targets[0];
+            var random = RandomSingleton.GetInstance();
+
+            if (random.Next(100) > MissChance)
             {
-                if (unit.Health - Damage > 0)
+                if (target.Armor == 0)
                 {
-                    unit.Health -= Damage;
-                }
-                else
-                {
-                    unit.Health = 0;
-                    needCleaning = true;
+                    if (target.Health - Damage > 0)
+                    {
+                        target.Health -= Damage;
+                    }
+                    else
+                    {
+                        target.Health = 0;
+                        needCleaning = true;
+                    }
                 }
             }
 

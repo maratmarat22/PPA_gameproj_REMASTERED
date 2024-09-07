@@ -2,12 +2,16 @@
 {
     interface IView
     {
-        byte DisplayMainMenu();
+        char DisplayMainMenu();
 
-        string DisplayArmyCreationMenu(int budget);
+        string DisplayArmyCreationMenu(List<int> prices, int budget);
 
-        (byte row, byte col) DisplayTurn(int turn, string battlefieldString);
+        (int row, int col) DisplayTurn(int turn, string battlefieldString);
 
-        byte DisplayAbilities(string[] abilities);
+        char DisplayAbilities(string[] abilities);
+
+        int DisplaySwapTargetSelection();
+
+        void DisplayUnit(string unitString);
     }
 }

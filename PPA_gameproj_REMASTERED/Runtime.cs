@@ -8,23 +8,23 @@ namespace PPA_gameproj_REMASTERED
         {
             IView view = new ConsoleView();
 
-            byte option = view.DisplayMainMenu();
+            char option = view.DisplayMainMenu();
 
             switch (option)
             {
-                case 1:
+                case '1':
                     var gameplay = new Gameplay(view);
                     gameplay.Init();
                     gameplay.Process();
                     break;
 
-                case 2: // Load save
+                case '2': // Load save
                     break;
 
-                case 3: // Settings
+                case '3': // Settings
                     break;
 
-                case 4:
+                case '4':
                     Environment.Exit(0);
                     break;
             }

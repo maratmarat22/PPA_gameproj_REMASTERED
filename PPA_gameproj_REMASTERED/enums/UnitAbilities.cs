@@ -4,8 +4,7 @@
     public enum UnitAbilities
     {
         Swap = 1,
-        AttackOne = 2,
-        AttackMany = 4,
-        Heal = 8
+        Attack = 2,
+        Heal = 4
     }
 }

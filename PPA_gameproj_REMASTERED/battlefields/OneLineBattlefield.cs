@@ -14,6 +14,11 @@ namespace PPA_gameproj_REMASTERED.battlefields
             SkeletonArmy = skeletonArmy;
         }
 
+        public OneLineBattlefield GetAt(int index)
+        {
+            return this;
+        }
+
         public void Clean()
         {
             foreach (var unit in HumanArmy.Units)

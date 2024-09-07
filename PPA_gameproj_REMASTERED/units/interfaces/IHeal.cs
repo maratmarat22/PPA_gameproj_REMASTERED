@@ -4,6 +4,6 @@ namespace PPA_gameproj_REMASTERED.units.interfaces
 {
     interface IHeal
     {
-        bool Heal(List<Unit> units);
+        bool Heal(Unit[] units);
     }
 }
